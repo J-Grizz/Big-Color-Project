@@ -7,29 +7,41 @@ import "./Palette.css";
 class Palette extends Component {
   constructor(props) {
     super(props);
-    this.state = { level: 500 }
+    this.state = { level: 500, format: "hex" }
     this.changeLevel = this.changeLevel.bind(this);
+    this.changeFormat = this.changeFormat.bind(this);
   }
 
   changeLevel(level) {
     this.setState({ level })
   }
 
+  changeFormat(val) {
+    this.setState({
+      format: val
+    })
+  }
+
   render() {
-    const { colors } = this.props.palette;
-    const { level } = this.state;
+    const { colors, paletteName } = this.props.palette;
+    const { level, format } = this.state;
     const colorBoxes = colors[level].map(color => {
-      return <ColorBox background={color.hex} name={color.name} />
+      return <ColorBox key={color.id} background={color[format]} name={color.name} />
     })
 
     return (
       <div className='Palette'>
-        <Navbar sliderChange={this.changeLevel} level={level} />
-        {/* Navbar goes here */}
+
+        <Navbar handleFormatChange={this.changeFormat} sliderChange={this.changeLevel} level={level} />
+
         <div className='Palette-colors'>
           {colorBoxes}
         </div>
-        {/* footer eventually */}
+
+        <footer className="palette-footer">
+          {paletteName}
+          <span className="emoji">{this.props.emoji}</span>
+        </footer>
       </div>
     );
   }
