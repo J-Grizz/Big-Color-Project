@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import { withStyles } from "@material-ui/styles";
 import { Close } from "@material-ui/icons"
 import { Link } from "react-router-dom";
@@ -9,9 +8,7 @@ import {
   Snackbar,
   IconButton
 } from "@material-ui/core"
-
 import Slider from "rc-slider";
-
 import 'rc-slider/assets/index.css';
 import styles from "./styles/NavbarStyles"
 
