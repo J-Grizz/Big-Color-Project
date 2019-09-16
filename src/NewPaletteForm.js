@@ -76,7 +76,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function NewPaletteForm() {
+export default function NewPaletteForm(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -118,6 +118,12 @@ export default function NewPaletteForm() {
     setNewName(e.target.value)
   }
 
+  function handlesSubmit() {
+    const newPalette = { paletteName: "New Test Palette", colors: colors };
+    props.savePalette(newPalette);
+    console.log("hello");
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -140,6 +146,13 @@ export default function NewPaletteForm() {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handlesSubmit}
+          >
+            Save palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer

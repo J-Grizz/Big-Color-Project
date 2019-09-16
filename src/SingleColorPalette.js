@@ -19,6 +19,7 @@ class SingleColorPalette extends Component {
   gatherShades(palette, colorToFilterBy) {
     let shades = [];
     let allColors = palette.colors;
+    // eslint-disable-next-line
     for (let key in allColors) {
       shades = shades.concat(
         allColors[key].filter(color => color.id === colorToFilterBy)
