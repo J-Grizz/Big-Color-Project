@@ -5,48 +5,15 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 import { Button } from '@material-ui/core';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link } from "react-router-dom"
-
-import { makeStyles } from '@material-ui/core/styles';
-
-const drawerWidth = 400;
-
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: "flex"
-  },
-  appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    flexDirection: "row",
-    justifyContent: "space-between",
-    height: "64px"
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  navBtns: {
-
-  }
-
-}))
+import PaletteMetaForm from "./PaletteMetaForm";
+import useStyles from "./styles/PaletteFormNavStyles"
 
 export default function PaletteFormNav(props) {
   const classes = useStyles();
+  const [formShowing, setFormShowing] = React.useState(false)
   const {
     open,
     newPaletteName,
@@ -55,9 +22,20 @@ export default function PaletteFormNav(props) {
     handleChangePalette
   } = props;
 
+  function handleClickOpen() {
+    setFormShowing("namePaletteStage");
+  }
+
+  function handleClickSave() {
+    setFormShowing("emojiPickerStage")
+  }
+
+  function handleClose() {
+    setFormShowing(false);
+  }
+
   return (
     <div>
-
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -73,40 +51,42 @@ export default function PaletteFormNav(props) {
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
           >
-            <MenuIcon />
+            <AddToPhotosIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
             Palette Builder
           </Typography>
         </Toolbar>
-
         <div className={classes.navBtns}>
-          <ValidatorForm onSubmit={handlesSubmit}>
-            <TextValidator
-              label="Palette Name"
-              value={newPaletteName}
-              onChange={handleChangePalette}
-              name="newPaletteName"
-              validators={["required", "isPaletteNameUnique"]}
-              errorMessages={["Enter palette Name", "Name Already In Use"]}
-            />
+
+          <PaletteMetaForm
+            newPaletteName={newPaletteName}
+            handlesSubmit={handlesSubmit}
+            handleChangePalette={handleChangePalette}
+            formShowing={formShowing}
+            handleClose={handleClose}
+            handleClickSave={handleClickSave}
+          />
+
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleClickOpen}
+            className={classes.button}
+          >
+            Save New Palette
+          </Button>
+          <Link to="/">
             <Button
               variant="contained"
               color="secondary"
-              type="submit"
+              className={classes.button}
             >
-              Save palette
-          </Button>
-          </ValidatorForm>
-          <Link to="/">
-            <Button variant="contained" color="secondary">
               Back
               </Button>
           </Link>
         </div>
-
       </AppBar>
-
     </div>
   )
 }
