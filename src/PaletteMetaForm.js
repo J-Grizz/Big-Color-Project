@@ -20,6 +20,7 @@ export default function AlertDialog(props) {
 
   function savePalette(emoji) {
     handlesSubmit(emoji.native)
+    handleClose()
   }
 
   return (

@@ -22,7 +22,10 @@ export default function ColorPickerForm(props) {
         className={classes.picker}
       />
 
-      <ValidatorForm onSubmit={addNewColor}>
+      <ValidatorForm
+        onSubmit={addNewColor}
+        instantValidate={false}
+      >
         <TextValidator
           value={newColorName}
           placeholder="Color Name"

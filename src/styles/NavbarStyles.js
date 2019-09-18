@@ -44,7 +44,7 @@ export default {
       margin: "-3px 0 0 -3px",
     },
     [sizes.down("sm")]: {
-      width: "130px"
+      width: "150px"
     }
   },
   selectContainer: {

@@ -14,6 +14,7 @@ import { arrayMove } from 'react-sortable-hoc';
 import PaletteFormNav from "./PaletteFormNav";
 import ColorPickerForm from "./ColorPickerForm";
 import useStyles from "./styles/NewPaletteFormStyles"
+import seedColor from "./seedColors";
 
 NewPaletteForm.defaultProps = {
   maxColors: 20
@@ -24,7 +25,7 @@ export default function NewPaletteForm(props) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const [currentColor, setcurrentColor] = useState("teal");
-  const [colors, setColors] = useState([...props.palettes[0].colors]);
+  const [colors, setColors] = useState([...seedColor[0].colors]);
   const [newColorName, setNewColorName] = useState("");
   const [newPaletteName, setNewPaletteName] = useState("");
   const paletteIsFull = colors.length >= props.maxColors;
@@ -182,6 +183,7 @@ export default function NewPaletteForm(props) {
           deleteColor={deleteColor}
           axis="xy"
           onSortEnd={onSortEnd}
+          distance={5}
         />
       </main>
     </div >
