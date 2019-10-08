@@ -20,6 +20,9 @@ export default {
     justifyContent: "center",
     backgroundColor: "#1e3ce6",
     backgroundImage: `url(${bg})`,
+    /* background by SVGBackgrounds.com */
+    backgroundAttachment: "fixed",
+    backgroundSize: "cover",
     overflow: "scroll",
     overflowX: "auto",
     overflowY: "auto"
@@ -46,22 +49,23 @@ export default {
   nav: {
     display: "flex",
     width: "100%",
+    margin: "20px 0",
     justifyContent: "space-between",
     color: "white",
     alignItems: "center",
     "& a": {
       color: "white"
-    }
-
+    },
   },
   palettes: {
     boxSizing: "border-box",
     width: "100%",
+    marginBottom: "20px",
     display: "grid",
-    gridTemplateColumns: "repeat(3, 30%)",
+    gridTemplateColumns: "repeat(3, 32%)",
     gridGap: "1.5rem",
     [sizes.down("sm")]: {
-      gridTemplateColumns: "repeat(2, 47.6%)",
+      gridTemplateColumns: "repeat(2, 49%)",
       gridGap: "1rem"
     },
     [sizes.down("xs")]: {

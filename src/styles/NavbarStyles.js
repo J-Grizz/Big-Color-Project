@@ -5,7 +5,10 @@ export default {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    height: "6vh"
+    height: "6vh",
+    [sizes.down("xs")]: {
+      height: "12vh",
+    }
   },
   logo: {
     display: "flex",
@@ -19,9 +22,6 @@ export default {
     "& a": {
       "textDecoration": "none",
       "color": "black"
-    },
-    [sizes.down("xs")]: {
-      display: "none"
     }
   },
   slider: {
@@ -44,7 +44,8 @@ export default {
       margin: "-3px 0 0 -3px",
     },
     [sizes.down("sm")]: {
-      width: "150px"
+      width: "150px",
+      marginRight: "10px"
     }
   },
   selectContainer: {

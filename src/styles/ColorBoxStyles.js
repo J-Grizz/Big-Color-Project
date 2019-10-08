@@ -86,7 +86,7 @@ export default {
   showOverlay: {
     position: "absolute",
     opacity: "1",
-    transform: "scale(10)",
+    transform: "scale(60)",
     zIndex: "10",
   },
   copyMessage: {
